@@ -44,7 +44,7 @@ $('input').keyup(function(e){
     	}
     	
     	if(videoID){
-    		var detailUrl = "http://youtube.com/get_video_info?video_id=" + videoID + "&el=detailpage&ps=default&eurl=&gl=US&hl=en"
+    		var detailUrl = "https://youtube.com/get_video_info?video_id=" + videoID + "&el=detailpage&ps=default&eurl=&gl=US&hl=en"
     		console.log(detailUrl)
     		$.getJSON( detailUrl, function( data ) {
 			  console.log(data)
