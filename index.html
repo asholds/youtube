@@ -46,9 +46,13 @@ $('input').keyup(function(e){
         $('#output').append("video id found: " + video_id + "<br/>")
       
         if(video_id){
-            var detailUrl = "http://www.youtube.com/get_video_info?video_id=" + video_id
+            var detailUrl = "https://www.youtube.com/get_video_info?video_id=" + video_id
+            console.log(detailUrl)
             $('#output').append("requesting video info...<br/>")
-            $.getJSON('https://whateverorigin.org/get?url=' + encodeURIComponent(detailUrl) + '&callback=?',  function(data) { 
+            //$.getJSON('https://whateverorigin.org/get?url=' + encodeURIComponent(detailUrl) + '&callback=?',  function(data) { 
+            $.getJSON('https://anyorigin.com/go?url=' + encodeURIComponent(detailUrl) + '&callback=?',  function(data) { 
+
+                
                 $('#output').append("video info request successful. parsing...<br/>") 
                 var info = {};  
                 parse_str(data.contents, info); 
