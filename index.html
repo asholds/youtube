@@ -48,7 +48,7 @@ $('input').keyup(function(e){
         if(video_id){
             var detailUrl = "http://www.youtube.com/get_video_info?video_id=" + video_id
             $('#output').append("requesting video info...<br/>")
-            $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent(detailUrl) + '&callback=?',  function(data) { 
+            $.getJSON('https://whateverorigin.org/get?url=' + encodeURIComponent(detailUrl) + '&callback=?',  function(data) { 
                 $('#output').append("video info request successful. parsing...<br/>") 
                 var info = {};  
                 parse_str(data.contents, info); 
