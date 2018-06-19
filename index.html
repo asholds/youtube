@@ -1,0 +1,75 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<style>
+
+	input{
+		width:100%;
+	}	
+	#output{
+		border:1px solid black;
+		font-size:.7em;
+		font-family:Consolas, monaco, monospace;
+		margin-top:5px;
+		padding:5px;
+		height:90%;
+	}
+
+</style>
+
+<html>
+<head><meta charset="UTF-8"></head>
+
+<input type='text' placeholder='video url' width='100%'></input>
+<div id='output'></div>
+
+</html>
+
+<script>
+
+$('input').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+    	var url = this.value
+    	url = "https://youtu.be/e8GcKA1Ezh4"
+    	url = "https://www.youtube.com/watch?v=e8GcKA1Ezh4&feature=youtu.be"
+
+    	var videoID = "";
+    	if(url.includes("youtube.com")){
+    		videoID = getUrlVars(url)['v']
+    	}else if(url.includes("youtu.be")){
+    		var splitUrl = url.split('/')
+    		videoID = splitUrl.last()
+    	}else{
+    		$('#output').append("<a href='" + url + "'>download</a>");
+    	}
+    	
+    	if(videoID){
+    		var detailUrl = "http://youtube.com/get_video_info?video_id=" + videoID + "&el=detailpage&ps=default&eurl=&gl=US&hl=en"
+    		console.log(detailUrl)
+    		$.getJSON( detailUrl, function( data ) {
+			  console.log(data)
+			});
+    	}
+    }
+});
+
+function getUrlVars(url)
+{
+    var vars = [], hash;
+    var hashes = url.slice(url.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
+if (!Array.prototype.last){
+    Array.prototype.last = function(){
+        return this[this.length - 1];
+    };
+};
+
+</script>
